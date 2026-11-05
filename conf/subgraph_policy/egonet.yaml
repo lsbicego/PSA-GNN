@@ -1,0 +1,14 @@
+method: egonet
+khop: 2
+use_node_markings: true
+use_edge_markings: false
+marking_level: standard  # choices: [minimal, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_root
+  standard:
+    - is_root
+    - depth_root
+  maximal:
+    - is_root
+    - depth_root

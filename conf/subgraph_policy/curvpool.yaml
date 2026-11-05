@@ -1,0 +1,17 @@
+method: curvpool
+khop: 1
+quantile_cutoff: 0.80
+merge: true
+threshold: null
+use_node_markings: true
+use_edge_markings: false
+marking_level: standard  # choices: [minimal, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_core
+  standard:
+    - is_core
+    - depth_core
+  maximal:
+    - is_core
+    - depth_core

@@ -1,0 +1,20 @@
+method: seeded_hops
+seed_mode: degree_iter
+                      # iterative mode: [degree, random]
+coverage_mode: core   # iterative mode: [core, core_halo] 
+khop: 1             # 0 disables halo
+pad_hop: 1
+use_node_markings: true
+use_edge_markings: false
+## markings levels
+marking_level: standard  # choices: [minimal, like_egonet, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_root
+  standard:
+    - is_root
+    - depth_root
+  maximal:
+    - is_root
+    - depth_root
+    - is_core

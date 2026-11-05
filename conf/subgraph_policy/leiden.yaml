@@ -1,0 +1,15 @@
+method: leiden
+resolution: 1.0
+khop: 1
+use_node_markings: true
+use_edge_markings: false
+marking_level: standard  # choices: [minimal, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_core
+  standard:
+    - is_core
+    - depth_core
+  maximal:
+    - is_core
+    - depth_core

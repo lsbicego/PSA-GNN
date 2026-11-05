@@ -1,0 +1,15 @@
+name: BREC
+root: ${oc.env:DATA_ROOT,./data}/BREC/
+source: BREC
+force_reload: true
+on_disk: true
+task: brec 
+num_classes: 16
+model_params:
+  hidden_dim: 32
+  num_layers: 8
+  conv_dropout: 0.0
+  head_dropout: 0.0
+  readout: "sum"
+  intermediate_mlp: false
+  encode_subgraph_size: true

@@ -1,0 +1,14 @@
+name: pool_gnn
+conv_type: "GIN"
+number_initial_mp: 4
+number_within_mp: 0
+within_cluster_mp: false
+number_post_mp: 4
+intermediate_mlp: true
+head_dropout: 0.0
+conv_dropout: 0.0
+readout: "sum"
+encoding_strategy: "SUM"
+use_subgraph_mlp: true
+within_conv_agg: "mean"
+cluster_agg: "mean"

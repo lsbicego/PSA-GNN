@@ -1,0 +1,7 @@
+name: psa_gnn
+conv_type: "GINE"
+mode: "psa"
+encoding_strategy: "SUM"
+use_subgraph_mlp: true
+within_conv_agg: "mean"
+cluster_agg: "mean"

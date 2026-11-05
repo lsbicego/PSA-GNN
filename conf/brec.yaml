@@ -1,0 +1,77 @@
+timestamp: &timestamp ${now:%Y-%m-%d_%H-%M-%S}
+local_data_dir: null
+defaults:
+  - dataset: brec
+  - model: psa_gnn
+  - subgraph_policy: leiden           # Default subgraph policy
+  - _self_
+  - override hydra/launcher: basic
+
+experiment:
+  seed: 42
+  device: auto
+  epochs: 40
+  batch_size: 16
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  loss_threshold: 0.2
+  margin: 0.0
+  optimizer: adam
+  scheduler:
+    factor: 0.5
+    patience: 10
+    min_lr: 1.0e-6
+    mode: min
+
+benchmark:
+  num_relabel: 32
+  sample_pairs: 400
+  partitions:
+    - name: Basic
+      start: 0
+      end: 60
+    - name: Regular
+      start: 60
+      end: 160
+    - name: Extension
+      start: 160
+      end: 260
+    - name: CFI
+      start: 260
+      end: 360
+    - name: 4-Vertex_Condition
+      start: 360
+      end: 380
+    - name: Distance_Regular
+      start: 380
+      end: 400
+
+model_runner:
+  input_dim: 1 # UNUSED: inferred from dataset
+  hidden_dim: 16 # UNUSED: set in dataset config
+  num_layers: 8 # UNUSED: set in dataset config
+  output_dim: 16 
+
+evaluation:
+  threshold: 72.34
+  epsilon_cmp: 1.0e-6
+
+logging:
+  base_dir: "${hydra:runtime.cwd}/OUT/brec"
+  save_dir: "${logging.base_dir}/run_${experiment.seed}/${model.name}/"
+  ablation: "default"
+  metrics_filename: "metrics.json"
+  hyperparams_filename: "hyperparameters.json"
+  subgraph_stats_filename: "subgraph_statistics.json"
+  clean_model_name: null
+  wandb: true
+  wandb_project: "BREC"
+  wandb_run_name: "brec_${model.name}_${subgraph_policy.method}_${timestamp}"
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+  sweep:
+    dir: OUT/brec/hydra
+    subdir: ${hydra.job.num}_${timestamp}

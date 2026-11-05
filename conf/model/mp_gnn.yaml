@@ -1,0 +1,12 @@
+name: mp_gnn
+conv_type: "GIN"
+use_pe_for_transformers: false
+pe_type: "rwse"
+rwse_dim: 16
+pe_dim: ${model.rwse_dim}
+gps_attn_type: "performer"
+intermediate_mlp: true
+head_dropout: 0.0
+conv_dropout: 0.0
+readout: "sum"
+encoding_strategy: "SUM"

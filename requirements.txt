@@ -1,0 +1,21 @@
+# Default CPU wheels; CUDA users should select matching Torch/PyG sources.
+--extra-index-url https://download.pytorch.org/whl/cpu
+--find-links https://data.pyg.org/whl/torch-2.6.0+cpu.html
+
+torch==2.6.0
+torch-geometric==2.7.0
+torch-scatter==2.1.2
+numpy==1.26.4
+networkx==3.5
+tqdm==4.67.1
+hydra-core==1.3.2
+wandb==0.22.3
+igraph==1.0.0
+leidenalg==0.11.0
+psutil==7.0.0
+matplotlib==3.10.8
+seaborn==0.13.2
+scikit-learn==1.8.0
+huggingface-hub==0.36.0
+jupyterlab>=4,<5
+ipykernel==7.1.0

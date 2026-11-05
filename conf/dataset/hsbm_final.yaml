@@ -1,0 +1,32 @@
+name: hsbm_final
+root: "${oc.env:DATA_ROOT,./data}/hsbm_final"
+source: Own
+split: random
+subsample_graphs:
+force_reload: True
+multiprocess: True
+pre_filter:
+pre_transform:
+transform:
+task: graph_classification
+num_classes: 2
+loader_params:
+  pin_memory: true
+  num_workers: 4
+  persistent_workers: True
+  prefetch_factor: 2
+optimization_params:
+  batch_size: 128
+  learning_rate: 0.0005
+  weight_decay: 0.00001
+  warmup_epochs: 5 # only used for cosine scheduler
+  max_epochs: 250
+  early_stop_patience: 50
+  scheduler: "ReduceLROnPlateau" # options: ReduceLROnPlateau, CosineAnnealingLR
+model_params:
+  hidden_dim: 32
+  num_layers: 8
+  conv_dropout: 0.0
+  head_dropout: 0.0
+  readout: "sum"
+  intermediate_mlp: false

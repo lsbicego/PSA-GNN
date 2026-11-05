@@ -1,0 +1,33 @@
+name: COLLAB
+root: ${oc.env:DATA_ROOT,./data}/COLLAB
+source: TUDiskDataset
+split: random
+multiprocess: True
+force_reload: True
+pre_filter:
+pre_transform:
+- name : Constant
+transform:
+task: graph_classification
+num_classes: 3
+loader_params:
+  pin_memory: true
+  num_workers: 8
+  persistent_workers: true
+  prefetch_factor: 4
+optimization_params:
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0
+  warmup_epochs: 5 # only used for cosine scheduler
+  max_epochs: 300
+  early_stop_patience: 50
+  scheduler: "ReduceLROnPlateau" # options: ReduceLROnPlateau, CosineAnnealingLR
+model_params:
+  hidden_dim: 64
+  num_layers: 6
+  conv_dropout: 0.05
+  head_dropout: 0.1
+  readout: "mean"
+  intermediate_mlp: false
+  encode_subgraph_size: true

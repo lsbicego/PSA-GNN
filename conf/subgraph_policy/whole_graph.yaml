@@ -1,0 +1,8 @@
+method: whole_graph
+use_node_markings: false
+use_edge_markings: false
+marking_level: standard  # choices: [minimal, standard, maximal]
+marking_settings:
+  minimal: 
+  standard:
+  maximal:

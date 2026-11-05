@@ -1,0 +1,49 @@
+method: acl
+mode: iterative        # choices: [standard, iterative]
+seed_mode: degree   # standard mode: [degree, random, farthest]
+                      # iterative mode: [degree, random]
+coverage_mode: core   # iterative mode: [core, core_halo] 
+# For standard mode only:
+max_seeds: null       # if null → auto (num_nodes // 5)
+# For iterative mode only:
+max_subgraphs: 1000  # if null → auto (num_nodes // 5)
+# Expansion and Markings
+khop: 1             # 0 disables halo, 2 is good
+use_node_markings: true
+use_edge_markings: false
+# --------------------------------------------------
+# Diffusion / PPR
+# --------------------------------------------------
+alpha: 0.3           # teleport probability
+eps: 1e-3             # push threshold for ACL push
+ppr_num_iters: 5     # power iteration max steps
+ppr_tol: 1e-6         # power iteration tolerance
+ppr_use_cuda: true    # if true: run power PPR on CUDA if available
+chosen_solver: power  # choices: [power, else]
+# --------------------------------------------------
+# Sweep / cluster formation
+# --------------------------------------------------
+# Hybrid sweep limits (fractions of total graph volume)
+vol_min_frac: 0.02    # minimal acceptable volume
+vol_max_frac: 0.3    # maximal acceptable volume
+max_rescue: null      # if null → rescue all uncovered nodes
+# Marking settings
+marking_level: standard  # choices: [minimal, like_egonet, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_root
+  like_egonet:
+    - is_root
+    - depth_root
+  standard:
+    - is_root
+    - depth_root
+    - is_core
+    - ppr_normalized
+  maximal:
+    - is_root
+    - depth_root
+    - is_core
+    - ppr_value
+    - ppr_normalized
+    - ppr_degree_normalized

@@ -1,0 +1,18 @@
+method: cliquepool
+khop: 0
+clique_budget: null
+min_clique_size: 2
+clique_mode: "all_maximal" # choices: "all_maximal", "one_pass", "iterative"
+expand_mode: "edge_cover" # none, khop, edge_cover
+use_node_markings: true
+use_edge_markings: false
+marking_level: standard  # choices: [minimal, standard, maximal]
+marking_settings: 
+  minimal: 
+    - is_core
+  standard:
+    - is_core
+    - depth_core
+  maximal:
+    - is_core
+    - depth_core

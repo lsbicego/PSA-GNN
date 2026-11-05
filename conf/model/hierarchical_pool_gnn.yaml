@@ -1,0 +1,14 @@
+name: hierarchical_pool_gnn
+conv_type: "GIN"
+pooling_type: "topk"     # options: topk, diffpool
+pool_ratio: 0.5
+assign_layers: 1   # 1 or 2
+number_initial_mp: 8
+number_between_mp: 4
+number_post_mp: 4
+number_pooling_steps: 1
+intermediate_mlp: true
+head_dropout: 0.1
+conv_dropout: 0.0
+readout: "sum"
+encoding_strategy: "SUM"

@@ -1,0 +1,26 @@
+timestamp: &timestamp ${now:%Y-%m-%d:%H-%M-%S}
+local_data_dir: null
+defaults:
+  - dataset: nci1                     # Default dataset, can be overridden via CLI
+  - model: mp_gnn                     # Default model type
+  - subgraph_policy: leiden           # Default subgraph policy
+  - _self_                            # Important: applies this config last
+  - override hydra/launcher: basic
+experiment:
+  seed: 42
+  learning_rate: 0.001
+  weight_decay: 0
+  num_epochs: 500
+  early_stop_patience: 100
+  use_edge_features: true
+  self_loops: false
+logging:
+  wandb_project: "${dataset.name}" # Name of the Weights & Biases project
+  wandb_run_name: "${dataset.name}_${model.name}_${timestamp}" # Name of the Weights & Biases run
+  ablation: "default"
+  save_dir: "${hydra:runtime.cwd}/OUT/train/${dataset.name}/${logging.ablation}/run_${experiment.seed}/${model.name}/"
+  clean_model_name: null
+hydra:  # disable some logging to avoid clogging working dir
+  output_subdir: null 
+  run:  
+    dir: .
