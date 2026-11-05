@@ -1,6 +1,4 @@
-# PSA-GNN
-
-**Hierarchical Graph Representation Learning with Pooling-Induced Substructures**  
+# Hierarchical Graph Representation Learning with Pooling-Induced Substructures
 Luca Sbicego · Xiaowen Dong · Dorina Thanou  
 **NeurIPS 2026**
 
